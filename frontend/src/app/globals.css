@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+
+  /* Custom scrollbar — use plain CSS, not @apply, inside pseudo-selectors */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+@layer components {
+  /* ── Cards ─────────────────────────────────────── */
+  .card {
+    @apply bg-white rounded-2xl border border-slate-100;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+  }
+
+  /* ── Status badges ─────────────────────────────── */
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+
+  /* ── Buttons ─────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5
+           bg-brand-600 text-white text-sm font-semibold rounded-xl
+           hover:bg-brand-700 active:scale-95
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2
+           transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5
+           bg-white text-slate-700 text-sm font-semibold
+           border border-slate-200 rounded-xl
+           hover:bg-slate-50 hover:border-slate-300 active:scale-95
+           focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-offset-2
+           transition-all duration-150;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5
+           bg-red-600 text-white text-sm font-semibold rounded-xl
+           hover:bg-red-700 active:scale-95
+           focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2
+           transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2
+           text-slate-500 text-sm font-medium rounded-lg
+           hover:bg-slate-100 hover:text-slate-700
+           focus:outline-none transition-all duration-150;
+  }
+
+  /* ── Forms ─────────────────────────────────────── */
+  .form-label {
+    @apply block text-sm font-semibold text-slate-700 mb-1.5;
+  }
+
+  .form-input {
+    @apply w-full px-3.5 py-2.5 border border-slate-200 rounded-xl
+           text-sm text-slate-900 placeholder:text-slate-400 bg-white
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500
+           hover:border-slate-300 transition-all duration-150;
+  }
+
+  .form-error {
+    @apply flex items-center gap-1 text-xs text-red-500 mt-1.5 font-medium;
+  }
+
+  /* ── Page helpers ─────────────────────────────────── */
+  .section-title {
+    @apply text-xs font-bold text-slate-400 uppercase tracking-widest mb-3;
+  }
+}
