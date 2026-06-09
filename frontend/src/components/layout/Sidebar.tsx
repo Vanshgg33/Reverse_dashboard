@@ -2,15 +2,40 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, PlusCircle, Recycle, Circle } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, Recycle, List } from 'lucide-react';
 
-const nav = [
-  { href: '/', icon: LayoutDashboard, label: 'Dashboard' },
-  { href: '/bookings/new', icon: PlusCircle, label: 'New Booking' },
-];
+function NavItem({
+  href,
+  icon: Icon,
+  label,
+  active,
+}: {
+  href: string;
+  icon: React.ElementType;
+  label: string;
+  active: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+        active
+          ? 'bg-brand-500/15 text-brand-400 shadow-sm'
+          : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'
+      }`}
+    >
+      <Icon className={`w-4 h-4 shrink-0 ${active ? 'text-brand-400' : 'text-slate-500'}`} />
+      {label}
+      {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-brand-400" />}
+    </Link>
+  );
+}
 
 export function Sidebar() {
   const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === '/' ? pathname === '/' : pathname === href;
 
   return (
     <aside className="w-64 bg-slate-950 flex flex-col shrink-0 h-full border-r border-white/5">
@@ -34,29 +59,24 @@ export function Sidebar() {
         <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest px-3 mb-3">
           Menu
         </p>
-        {nav.map(({ href, icon: Icon, label }) => {
-          const active =
-            href === '/' ? pathname === '/' : pathname.startsWith(href);
-          return (
-            <Link
-              key={href}
-              href={href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
-                active
-                  ? 'bg-brand-500/15 text-brand-400 shadow-sm'
-                  : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'
-              }`}
-            >
-              <Icon
-                className={`w-4 h-4 shrink-0 ${active ? 'text-brand-400' : 'text-slate-500'}`}
-              />
-              {label}
-              {active && (
-                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-brand-400" />
-              )}
-            </Link>
-          );
-        })}
+
+        <NavItem href="/" icon={LayoutDashboard} label="Dashboard" active={isActive('/')} />
+
+        <div className="mx-1 my-3 h-px bg-white/5" />
+
+        <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest px-3 mb-3">
+          Bookings
+        </p>
+        <NavItem href="/bookings" icon={List} label="All Bookings" active={isActive('/bookings')} />
+        <div className="px-3 pt-2">
+          <Link
+            href="/bookings/new"
+            className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-xl text-sm font-semibold bg-brand-500/20 text-brand-400 border border-brand-500/20 hover:bg-brand-500/30 transition-all duration-150"
+          >
+            <PlusCircle className="w-4 h-4 shrink-0" />
+            New Booking
+          </Link>
+        </div>
       </nav>
 
       {/* Footer */}
