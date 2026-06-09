@@ -24,7 +24,7 @@ Full-stack assignment submission built with **Next.js 14** (frontend) and **Nest
 ### Step 1 — Clone and configure
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Vanshgg33/Reverse_dashboard.git
 cd vansh
 ```
 
