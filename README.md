@@ -48,8 +48,7 @@ NODE_ENV=development
 ```bash
 cd backend
 npm install
-npm run seed          # optional — loads 8 sample bookings
-npm run start:dev     # starts on http://localhost:3001
+npm run start     # starts on http://localhost:3001
 ```
 
 Swagger API docs available at: **http://localhost:3001/api/docs**
@@ -70,10 +69,8 @@ Open **http://localhost:3000** in your browser.
 
 | Directory | Script | What it does |
 |-----------|--------|--------------|
-| `backend` | `npm run start:dev` | Start API in watch mode |
+| `backend` | `npm run start` | Start API in watch mode |
 | `backend` | `npm run build` | Compile TypeScript to `dist/` |
-| `backend` | `npm run start:prod` | Run compiled production build |
-| `backend` | `npm run seed` | Populate MongoDB with sample data |
 | `frontend` | `npm run dev` | Start Next.js dev server |
 | `frontend` | `npm run build` | Build for production |
 | `frontend` | `npm run start` | Serve production build |
